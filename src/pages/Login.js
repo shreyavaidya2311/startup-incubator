@@ -9,13 +9,28 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { Person } from "@mui/icons-material";
 import logo from "../assets/img/SmartUp.png";
+import axios from "axios";
 
-const Login = () => {
+const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const handleSubmit = () => {
+    let body = { username, password };
+    axios.post("http://localhost:5000/api/users/login", body).then((res) => {
+      localStorage.setItem("smartup-auth-token", res.data.token);
+      localStorage.setItem("user-id", res.data._id);
+      localStorage.setItem("username", res.data.username);
+      if (res.data.role === "investor") {
+        props.history.push("/investor-dashboard");
+      } else {
+        props.history.push("/startup-dashboard");
+      }
+    });
+  };
 
   return (
     <Grid container component="main" sx={{ height: "100vh" }}>
@@ -82,6 +97,7 @@ const Login = () => {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={handleSubmit}
             >
               Sign In
             </Button>
@@ -109,4 +125,4 @@ const Login = () => {
     </Grid>
   );
 };
-export default Login;
+export default withRouter(Login);

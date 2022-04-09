@@ -1,0 +1,5 @@
+{
+    "mongoURI": "mongodb+srv://shreya:root@cluster0.oceuc.mongodb.net/test?authSource=admin&replicaSet=atlas-10190d-shard-0&readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=true",
+    "backendURL": "http://localhost:5000/api",
+    "jwtSecretKey": "jwt123"
+}

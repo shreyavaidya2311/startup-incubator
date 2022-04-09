@@ -16,10 +16,12 @@ import Page2 from "./Page2";
 import Page3 from "./Page3";
 import { BarChart } from "@mui/icons-material";
 import logo from "../../assets/img/SmartUp.png";
+import axios from "axios";
+import { withRouter } from "react-router-dom";
 
 const steps = ["Page 1", "Page 2", "Page 3"];
 
-const CensusForm = () => {
+const Register = (props) => {
   const [activeStep, setActiveStep] = useState(0);
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
@@ -85,7 +87,23 @@ const CensusForm = () => {
     setActiveStep(activeStep - 1);
   };
   const handleValidate = () => {};
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    let body = {
+      username,
+      password,
+      email,
+      firstName,
+      lastName,
+      phoneno,
+      istartups,
+      domain,
+      nstartup,
+      valuation,
+    };
+    axios
+      .post("http://localhost:5000/api/users/register-startup", body)
+      .then(props.history.push("/"));
+  };
 
   return (
     <>
@@ -196,4 +214,4 @@ const CensusForm = () => {
   );
 };
 
-export default CensusForm;
+export default withRouter(Register);
