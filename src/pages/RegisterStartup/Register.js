@@ -17,7 +17,7 @@ import Page3 from "./Page3";
 import { BarChart } from "@mui/icons-material";
 import logo from "../../assets/img/SmartUp.png";
 import axios from "axios";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 const steps = ["Page 1", "Page 2", "Page 3"];
 
@@ -206,6 +206,11 @@ const Register = (props) => {
                   )}
                 </>
               </Paper>
+              <center>
+                <Link to="/" style={{ textDecoration: "none" }}>
+                  Already have an account? Sign in
+                </Link>
+              </center>
             </Container>
           </Box>
         </Grid>
