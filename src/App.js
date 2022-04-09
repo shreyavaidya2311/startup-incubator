@@ -7,7 +7,9 @@ import RegisterInvestor from "./pages/RegisterInvestor/Register";
 import RegisterStartup from "./pages/RegisterStartup/Register";
 import InvestorDashboard from "./pages/InvestorDashboard";
 import StartupDashboard from "./pages/StartupDashboard";
+import InvestmentPortal from "./pages/InvestmentPortal";
 import ProtectedRoute from "./ProtectedRoute";
+import StartupDetails from "./pages/StartupDetails";
 
 function App() {
   return (
@@ -25,6 +27,11 @@ function App() {
             path="/startup-dashboard"
             component={StartupDashboard}
           />
+          <ProtectedRoute
+            path="/investment-portal"
+            component={InvestmentPortal}
+          />
+          <ProtectedRoute path="/startup-details" component={StartupDetails} />
         </Switch>
       </Router>
     </ThemeProvider>
