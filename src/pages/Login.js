@@ -24,6 +24,10 @@ const Login = (props) => {
       localStorage.setItem("smartup-auth-token", res.data.token);
       localStorage.setItem("user-id", res.data._id);
       localStorage.setItem("username", res.data.username);
+      localStorage.setItem(
+        "name",
+        res.data.firstName + " " + res.data.lastName
+      );
       if (res.data.img) {
         localStorage.setItem("profile-pic", res.data.img);
       }

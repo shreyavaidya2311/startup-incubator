@@ -70,4 +70,25 @@ router.post("/get-preferred-startups", (req, res) => {
   }
 });
 
+// @route POST /startups/offer-action
+// @desc Defines action to given offer
+router.post("/offer-action", (req, res) => {
+  const { startup_id, investor_id, action } = req.body;
+  try {
+    if (action === "accept") {
+      Startup.findOneAndUpdate(
+        { startup_id: startup_id },
+        { $push: { accepted: investor_id } }
+      ).then((startup) => res.status(200).send({ startup: startup }));
+    } else {
+      Startup.findOneAndUpdate(
+        { startup_id: startup_id },
+        { $push: { rejected: investor_id } }
+      ).then((startup) => res.status(200).send({ startup: startup }));
+    }
+  } catch (err) {
+    res.status(400).send("Error:" + err);
+  }
+});
+
 module.exports = router;

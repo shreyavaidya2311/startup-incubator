@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/users.model");
 const Investor = require("../models/investors.model");
+const Startup = require("../models/startups.model");
 
 // @route POST /investors/get-investor
 // @desc Gets a investor by id
@@ -54,4 +55,41 @@ router.post("/change-mode", (req, res) => {
   }
 });
 
+// @route POST /investors/make-offer
+// @desc Make offer to startup
+router.post("/make-offer", (req, res) => {
+  const {
+    investor_id,
+    startup_id,
+    investor_name,
+    investor_image,
+    investment,
+    equity,
+  } = req.body;
+  try {
+    Investor.findOneAndUpdate(
+      { investor_id: investor_id },
+      { $push: { offers: startup_id } }
+    ).then((investor) => {
+      Startup.findOneAndUpdate(
+        { startup_id: startup_id },
+        {
+          $push: {
+            offers: {
+              investor_id: investor_id,
+              investment: investment,
+              equity: equity,
+              investor_name: investor_name,
+              investor_image: investor_image,
+            },
+          },
+        }
+      ).then(() => {
+        res.status(200).send({ investor: investor });
+      });
+    });
+  } catch (err) {
+    res.status(400).send("Error:" + err);
+  }
+});
 module.exports = router;
