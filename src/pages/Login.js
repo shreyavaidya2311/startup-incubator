@@ -25,8 +25,10 @@ const Login = (props) => {
       localStorage.setItem("user-id", res.data._id);
       localStorage.setItem("username", res.data.username);
       if (res.data.role === "investor") {
+        localStorage.setItem("domains", res.data.domains);
         props.history.push("/investor-dashboard");
       } else {
+        localStorage.setItem("startup-id", res.data.startup_id);
         props.history.push("/startup-dashboard");
       }
     });

@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const User = require("../models/users.model");
+const Startup = require("../models/startups.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const keys = require("../config/default.json");
@@ -74,6 +75,7 @@ router.post("/register-startup", (req, res) => {
       if (user) {
         return res.status(400).json("Username already exists");
       } else {
+        let startup_id = Date.now() + "";
         const newUser = new User({
           username,
           password,
@@ -85,7 +87,16 @@ router.post("/register-startup", (req, res) => {
           domain,
           nstartup,
           valuation,
+          startup_id,
           role: "startup",
+        });
+        const newStartup = new Startup({
+          istartups,
+          domain,
+          nstartup,
+          valuation,
+          startup_id,
+          mode: "private",
         });
         bcrypt.hash(newUser.password, 10, (err, hash) => {
           if (err) throw err;
@@ -93,9 +104,12 @@ router.post("/register-startup", (req, res) => {
           newUser
             .save()
             .then(() =>
-              res
-                .status(200)
-                .send({ msg: "New user created successfully", user: newUser })
+              newStartup.save().then(() => {
+                res.status(200).send({
+                  msg: "New user created successfully",
+                  user: newUser,
+                });
+              })
             )
             .catch((err) => res.status(400).send("Error:" + err));
         });

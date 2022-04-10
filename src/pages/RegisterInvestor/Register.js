@@ -102,22 +102,22 @@ const Register = (props) => {
   const handleSubmit = () => {
     let domains = [];
     if (tech === true) {
-      domains.push("tech");
+      domains.push("Tech");
     }
     if (fintech === true) {
-      domains.push("fintech");
+      domains.push("Fintech");
     }
     if (edtech === true) {
-      domains.push("edtech");
+      domains.push("Edtech");
     }
     if (medtech === true) {
-      domains.push("medtech");
+      domains.push("Medtech");
     }
     if (food === true) {
-      domains.push("food");
+      domains.push("Food");
     }
     if (wearables === true) {
-      domains.push("wearables");
+      domains.push("Wearables");
     }
     let body = {
       username,
@@ -132,7 +132,9 @@ const Register = (props) => {
     };
     axios
       .post("http://localhost:5000/api/users/register-investor", body)
-      .then(props.history.push("/"));
+      .then(() => {
+        props.history.push("/");
+      });
   };
 
   return (

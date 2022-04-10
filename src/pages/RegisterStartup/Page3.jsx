@@ -38,10 +38,10 @@ const Page3 = (props) => {
               label="Domain"
               onChange={(e) => props.setDomain(e.target.value)}
             >
-              <MenuItem value={"Technology"}>Technology</MenuItem>
-              <MenuItem value={"FinTech"}>FinTech</MenuItem>
-              <MenuItem value={"EdTech"}>EdTech</MenuItem>
-              <MenuItem value={"MedTech"}>MedTech</MenuItem>
+              <MenuItem value={"Tech"}>Technology</MenuItem>
+              <MenuItem value={"Fintech"}>FinTech</MenuItem>
+              <MenuItem value={"Edtech"}>EdTech</MenuItem>
+              <MenuItem value={"Medtech"}>MedTech</MenuItem>
               <MenuItem value={"Food"}>Food</MenuItem>
               <MenuItem value={"Wearables"}>Wearables</MenuItem>
             </Select>
