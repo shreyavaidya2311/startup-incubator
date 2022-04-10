@@ -10,7 +10,7 @@ import {
   Slide,
   useScrollTrigger,
 } from "@mui/material";
-import { Logout } from "@mui/icons-material";
+import { CurrencyExchange, Logout } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -75,6 +75,13 @@ function Navbar(props) {
                     ) : (
                       <Avatar src="https://i.ibb.co/0jGHG81/profile.png" />
                     )}
+                  </IconButton>
+                </Link>
+              )}
+              {props.role === "startup" ? null : (
+                <Link to="/investor-offers">
+                  <IconButton style={{ marginTop: "5px" }}>
+                    <CurrencyExchange color="secondary" />
                   </IconButton>
                 </Link>
               )}

@@ -149,7 +149,7 @@ function StartupPortal() {
                         style={{ marginRight: "5px" }}
                         onClick={() => handleAction(key, "reject")}
                       >
-                        Reject
+                        Decline
                       </Button>
                       <Button
                         startIcon={<Check />}
