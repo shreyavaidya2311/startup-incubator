@@ -9,6 +9,7 @@ import InvestmentPortal from "./pages/InvestmentPortal";
 import StartupPortal from "./pages/StartupPortal";
 import StartupDetails from "./pages/StartupDetails";
 import InvestorDetails from "./pages/InvestorDetails";
+import CommunityChat from "./pages/CommunityChat/chat";
 import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             path="/investment-portal"
             component={InvestmentPortal}
           />
+          <ProtectedRoute path="/community-chat" component={CommunityChat} />
           <ProtectedRoute path="/startup-portal" component={StartupPortal} />
           <ProtectedRoute path="/startup-details" component={StartupDetails} />
           <ProtectedRoute
