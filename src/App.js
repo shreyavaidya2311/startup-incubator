@@ -11,6 +11,7 @@ import StartupDetails from "./pages/StartupDetails";
 import InvestorDetails from "./pages/InvestorDetails";
 import InvestorOffers from "./pages/InvestorOffers";
 import ProtectedRoute from "./ProtectedRoute";
+import CommunityChat from "./pages/CommunityChat";
 
 function App() {
   return (
@@ -31,6 +32,10 @@ function App() {
             component={InvestorDetails}
           />
           <ProtectedRoute path="/investor-offers" component={InvestorOffers} />
+          <ProtectedRoute
+            path="/community-chat"
+            component={CommunityChat}
+          />
         </Switch>
       </Router>
     </ThemeProvider>
