@@ -110,7 +110,9 @@ function InvestmentPortal(props) {
     };
     axios
       .post("http://localhost:5000/api/investors/make-offer", body)
-      .then(() => setOpen(false));
+      .then(() => {
+        window.location.reload();
+      });
   };
   return (
     <div>
@@ -118,95 +120,108 @@ function InvestmentPortal(props) {
       {loading ? (
         <CircularProgress />
       ) : (
-        <Grid
-          container
-          spacing={3}
-          justifyContent="center"
-          style={{ marginTop: "6em" }}
-        >
-          {data.map((item, key) =>
-            item.mode === "private" ? null : (
-              <Grid item>
-                <Card sx={{ maxWidth: 345 }}>
-                  <CardMedia
-                    component="img"
-                    height="194"
-                    image={item.clogo}
-                    alt="logo"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                      {item.nstartup}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      {item.tagline}
-                    </Typography>
-                  </CardContent>
-                  <CardActions disableSpacing>
-                    <Button
-                      startIcon={<YouTube />}
-                      variant="outlined"
-                      color="secondary"
-                      onClick={() => window.open(item.pitch, "_blank")}
-                      style={{ marginRight: "5px" }}
-                    >
-                      View Pitch
-                    </Button>
-                    {offers.includes(item.startup_id) || mode === "private" ? (
-                      <Button
-                        startIcon={<CurrencyRupee />}
-                        variant="outlined"
-                        color="primary"
-                        disabled
-                      >
-                        Offer
-                      </Button>
-                    ) : (
-                      <Button
-                        startIcon={<CurrencyRupee />}
-                        variant="outlined"
-                        color="primary"
-                        onClick={() => handleOffer(item)}
-                      >
-                        Offer
-                      </Button>
-                    )}
-
-                    <ExpandMore
-                      expand={expanded[key]}
-                      onClick={() => handleExpandClick(key)}
-                      aria-label="show more"
-                      aria-expanded={expanded[key]}
-                    >
-                      <ExpandMoreIcon />
-                    </ExpandMore>
-                  </CardActions>
-                  <Collapse in={expanded[key]} timeout="auto" unmountOnExit>
+        <>
+          {data.length === 0 ? (
+            <center>
+              <Typography variant="h4" style={{ marginTop: "4em" }}>
+                No Startups Available
+              </Typography>
+            </center>
+          ) : (
+            <center>
+              <Typography variant="h4" style={{ marginTop: "3em" }}>
+                Recommended Startups
+              </Typography>
+            </center>
+          )}
+          <br />
+          <br />
+          <Grid container spacing={3} justifyContent="center">
+            {data.map((item, key) =>
+              item.mode === "private" ? null : (
+                <Grid item>
+                  <Card sx={{ maxWidth: 345 }}>
+                    <CardMedia
+                      component="img"
+                      height="194"
+                      image={item.clogo}
+                      alt="logo"
+                    />
                     <CardContent>
-                      <Typography gutterBottom variant="h6" component="div">
-                        Company Details
+                      <Typography gutterBottom variant="h5" component="div">
+                        {item.nstartup}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        <strong>Domain</strong> - {item.domain}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        <strong>Current Valuation</strong> - ₹
-                        {numberWithCommas(item.valuation)}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        <strong>Ask for Investment</strong> - ₹
-                        {numberWithCommas(item.investment)}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        <strong>Equity Offered</strong>- {item.equity}%
+                        {item.tagline}
                       </Typography>
                     </CardContent>
-                  </Collapse>
-                </Card>
-              </Grid>
-            )
-          )}
-        </Grid>
+                    <CardActions disableSpacing>
+                      <Button
+                        startIcon={<YouTube />}
+                        variant="outlined"
+                        color="secondary"
+                        onClick={() => window.open(item.pitch, "_blank")}
+                        style={{ marginRight: "5px" }}
+                      >
+                        View Pitch
+                      </Button>
+                      {offers.includes(item.startup_id) ||
+                      mode === "private" ? (
+                        <Button
+                          startIcon={<CurrencyRupee />}
+                          variant="outlined"
+                          color="primary"
+                          disabled
+                        >
+                          Offer
+                        </Button>
+                      ) : (
+                        <Button
+                          startIcon={<CurrencyRupee />}
+                          variant="outlined"
+                          color="primary"
+                          onClick={() => handleOffer(item)}
+                        >
+                          Offer
+                        </Button>
+                      )}
+
+                      <ExpandMore
+                        expand={expanded[key]}
+                        onClick={() => handleExpandClick(key)}
+                        aria-label="show more"
+                        aria-expanded={expanded[key]}
+                      >
+                        <ExpandMoreIcon />
+                      </ExpandMore>
+                    </CardActions>
+                    <Collapse in={expanded[key]} timeout="auto" unmountOnExit>
+                      <CardContent>
+                        <Typography gutterBottom variant="h6" component="div">
+                          Company Details
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          <strong>Domain</strong> - {item.domain}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          <strong>Current Valuation</strong> - ₹
+                          {numberWithCommas(item.valuation)}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          <strong>Ask for Investment</strong> - ₹
+                          {numberWithCommas(item.investment)}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          <strong>Equity Offered</strong>- {item.equity}%
+                        </Typography>
+                      </CardContent>
+                    </Collapse>
+                  </Card>
+                </Grid>
+              )
+            )}
+          </Grid>
+        </>
       )}
       {dialogLoading ? null : (
         <Dialog open={open} onClose={handleDialog}>

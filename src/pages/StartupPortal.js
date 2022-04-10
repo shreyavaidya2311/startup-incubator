@@ -79,7 +79,7 @@ function StartupPortal() {
     axios
       .post("http://localhost:5000/api/startups/offer-action", body)
       .then((res) => {
-        console.log("Done");
+        window.location.reload();
       });
   };
   const handleExpandClick = (key) => {
@@ -101,110 +101,122 @@ function StartupPortal() {
     <div>
       <Navbar role="startup" />
       {loading ? (
-        <CircularProgress />
+        <CircularProgress color="primary" />
       ) : (
-        <Grid
-          container
-          spacing={3}
-          justifyContent="center"
-          style={{ marginTop: "6em" }}
-        >
-          {offers.map((item, key) => (
-            <Grid item>
-              <Card sx={{ maxWidth: 345 }}>
-                <CardMedia
-                  component="img"
-                  height="194"
-                  image={
-                    item.investor_image
-                      ? item.investor_image
-                      : "https://i.ibb.co/0jGHG81/profile.png"
-                  }
-                  alt="logo"
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    {item.investor_name}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    <strong>Investment Offer</strong> - ₹
-                    {numberWithCommas(item.investment)}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    <strong>Ask for Equity</strong> - {item.equity}%
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    <strong>Calculated Valuation</strong> - ₹
-                    {numberWithCommas((item.investment / item.equity) * 100)}
-                  </Typography>
-                </CardContent>
-                <CardActions disableSpacing>
-                  {accepted.includes(item.investor_id) ||
-                  rejected.includes(item.investor_id) ? null : (
-                    <>
-                      <Button
-                        startIcon={<Clear />}
-                        variant="outlined"
-                        color="secondary"
-                        style={{ marginRight: "5px" }}
-                        onClick={() => handleAction(key, "reject")}
-                      >
-                        Decline
-                      </Button>
-                      <Button
-                        startIcon={<Check />}
-                        variant="outlined"
-                        color="primary"
-                        onClick={() => handleAction(key, "accept")}
-                      >
-                        Accept
-                      </Button>
-                    </>
-                  )}
-                  {accepted.includes(item.investor_id) ? (
-                    <Button variant="outlined" color="primary" disabled>
-                      Accepted
-                    </Button>
-                  ) : null}
-                  {rejected.includes(item.investor_id) ? (
-                    <Button variant="outlined" color="primary" disabled>
-                      Rejected
-                    </Button>
-                  ) : null}
-                  <ExpandMore
-                    expand={expanded[key]}
-                    onClick={() => handleExpandClick(key)}
-                    aria-label="show more"
-                    aria-expanded={expanded[key]}
-                  >
-                    <ExpandMoreIcon />
-                  </ExpandMore>
-                </CardActions>
-                <Collapse in={expanded[key]} timeout="auto" unmountOnExit>
+        <>
+          {offers.length === 0 ? (
+            <center>
+              <Typography variant="h4" style={{ marginTop: "4em" }}>
+                No Offers Available
+              </Typography>
+            </center>
+          ) : (
+            <center>
+              <Typography variant="h4" style={{ marginTop: "3em" }}>
+                Offers made by Investors
+              </Typography>
+            </center>
+          )}
+          <br />
+          <br />
+          <Grid container spacing={3} justifyContent="center">
+            {offers.map((item, key) => (
+              <Grid item>
+                <Card sx={{ maxWidth: 345 }}>
+                  <CardMedia
+                    component="img"
+                    height="194"
+                    image={
+                      item.investor_image
+                        ? item.investor_image
+                        : "https://i.ibb.co/0jGHG81/profile.png"
+                    }
+                    alt="logo"
+                  />
                   <CardContent>
-                    <Typography gutterBottom variant="h6" component="div">
-                      Investor Details
+                    <Typography gutterBottom variant="h5" component="div">
+                      {item.investor_name}
                     </Typography>
-                    {nloading ? (
-                      <CircularProgress />
-                    ) : (
+                    <Typography variant="body2" color="text.secondary">
+                      <strong>Investment Offer</strong> - ₹
+                      {numberWithCommas(item.investment)}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      <strong>Ask for Equity</strong> - {item.equity}%
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      <strong>Calculated Valuation</strong> - ₹
+                      {numberWithCommas((item.investment / item.equity) * 100)}
+                    </Typography>
+                  </CardContent>
+                  <CardActions disableSpacing>
+                    {accepted.includes(item.investor_id) ||
+                    rejected.includes(item.investor_id) ? null : (
                       <>
-                        <Typography variant="body2" color="text.secondary">
-                          <strong>Investment Experience</strong> -{" "}
-                          {data[key].experience} years
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                          <strong>Number of Invested Startups</strong> -{" "}
-                          {data[key].istartups}
-                        </Typography>
+                        <Button
+                          startIcon={<Clear />}
+                          variant="outlined"
+                          color="secondary"
+                          style={{ marginRight: "5px" }}
+                          onClick={() => handleAction(key, "reject")}
+                        >
+                          Decline
+                        </Button>
+                        <Button
+                          startIcon={<Check />}
+                          variant="outlined"
+                          color="primary"
+                          onClick={() => handleAction(key, "accept")}
+                        >
+                          Accept
+                        </Button>
                       </>
                     )}
-                  </CardContent>
-                </Collapse>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
+                    {accepted.includes(item.investor_id) ? (
+                      <Button variant="outlined" color="primary" disabled>
+                        Accepted
+                      </Button>
+                    ) : null}
+                    {rejected.includes(item.investor_id) ? (
+                      <Button variant="outlined" color="primary" disabled>
+                        Rejected
+                      </Button>
+                    ) : null}
+                    <ExpandMore
+                      expand={expanded[key]}
+                      onClick={() => handleExpandClick(key)}
+                      aria-label="show more"
+                      aria-expanded={expanded[key]}
+                    >
+                      <ExpandMoreIcon />
+                    </ExpandMore>
+                  </CardActions>
+                  <Collapse in={expanded[key]} timeout="auto" unmountOnExit>
+                    <CardContent>
+                      <Typography gutterBottom variant="h6" component="div">
+                        Investor Details
+                      </Typography>
+                      {nloading ? (
+                        <CircularProgress />
+                      ) : (
+                        <>
+                          <Typography variant="body2" color="text.secondary">
+                            <strong>Investment Experience</strong> -{" "}
+                            {data[key].experience} years
+                          </Typography>
+                          <Typography variant="body2" color="text.secondary">
+                            <strong>Number of Invested Startups</strong> -{" "}
+                            {data[key].istartups}
+                          </Typography>
+                        </>
+                      )}
+                    </CardContent>
+                  </Collapse>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </>
       )}
     </div>
   );

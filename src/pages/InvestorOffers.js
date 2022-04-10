@@ -49,107 +49,119 @@ const InvestorOffers = () => {
       {loading ? (
         <CircularProgress />
       ) : (
-        <Grid
-          container
-          spacing={3}
-          justifyContent="center"
-          style={{ marginTop: "6em" }}
-        >
-          {startups.map((item) =>
-            accepted.includes(item.startup_id) ? (
-              <Grid item>
-                <Card sx={{ minWidth: 370 }}>
-                  <CardMedia
-                    component="img"
-                    height="240"
-                    image={item.clogo}
-                    alt="logo"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                      {item.nstartup}
-                    </Typography>
-                    {item.offers.map((ele) =>
-                      ele.investor_id === investor_id ? (
-                        <>
-                          <Typography variant="body2" color="text.secondary">
-                            <strong>Amount Invested</strong> : ₹
-                            {numberWithCommas(ele.investment)}
-                          </Typography>
-                          <Typography variant="body2" color="text.secondary">
-                            <strong>Equity Gained</strong>: {ele.equity}%
-                          </Typography>
-                          <Typography variant="body2" color="text.secondary">
-                            <strong>Calculated Valuation</strong> : ₹
-                            {numberWithCommas(
-                              (ele.investment / ele.equity) * 100
-                            )}
-                          </Typography>
-                        </>
-                      ) : null
-                    )}
-                  </CardContent>
-                  <CardActions>
-                    <Button
-                      startIcon={<Check />}
-                      variant="outlined"
-                      color="success"
-                    >
-                      Accepted
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ) : null
+        <>
+          {startups.length === 0 ? (
+            <center>
+              <Typography variant="h4" style={{ marginTop: "4em" }}>
+                No Offers made
+              </Typography>
+            </center>
+          ) : (
+            <center>
+              <Typography variant="h4" style={{ marginTop: "3em" }}>
+                Track Offers
+              </Typography>
+            </center>
           )}
-          {startups.map((item) =>
-            rejected.includes(item.startup_id) ? (
-              <Grid item>
-                <Card sx={{ minWidth: 370 }}>
-                  <CardMedia
-                    component="img"
-                    height="240"
-                    image={item.clogo}
-                    alt="logo"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                      {item.nstartup}
-                    </Typography>
-                    {item.offers.map((ele) =>
-                      ele.investor_id === investor_id ? (
-                        <>
-                          <Typography variant="body2" color="text.secondary">
-                            <strong>Investment Offered</strong> : ₹
-                            {numberWithCommas(ele.investment)}
-                          </Typography>
-                          <Typography variant="body2" color="text.secondary">
-                            <strong>Equity Asked</strong>: {ele.equity}%
-                          </Typography>
-                          <Typography variant="body2" color="text.secondary">
-                            <strong>Calculated Valuation</strong> : ₹
-                            {numberWithCommas(
-                              (ele.investment / ele.equity) * 100
-                            )}
-                          </Typography>
-                        </>
-                      ) : null
-                    )}
-                  </CardContent>
-                  <CardActions>
-                    <Button
-                      startIcon={<Cancel />}
-                      variant="outlined"
-                      color="secondary"
-                    >
-                      Declined
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ) : null
-          )}
-        </Grid>
+          <br />
+          <br />
+          <Grid container spacing={3} justifyContent="center">
+            {startups.map((item) =>
+              accepted.includes(item.startup_id) ? (
+                <Grid item>
+                  <Card sx={{ minWidth: 370 }}>
+                    <CardMedia
+                      component="img"
+                      height="240"
+                      image={item.clogo}
+                      alt="logo"
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="div">
+                        {item.nstartup}
+                      </Typography>
+                      {item.offers.map((ele) =>
+                        ele.investor_id === investor_id ? (
+                          <>
+                            <Typography variant="body2" color="text.secondary">
+                              <strong>Amount Invested</strong> : ₹
+                              {numberWithCommas(ele.investment)}
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                              <strong>Equity Gained</strong>: {ele.equity}%
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                              <strong>Calculated Valuation</strong> : ₹
+                              {numberWithCommas(
+                                (ele.investment / ele.equity) * 100
+                              )}
+                            </Typography>
+                          </>
+                        ) : null
+                      )}
+                    </CardContent>
+                    <CardActions>
+                      <Button
+                        startIcon={<Check />}
+                        variant="outlined"
+                        color="success"
+                      >
+                        Accepted
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              ) : null
+            )}
+            {startups.map((item) =>
+              rejected.includes(item.startup_id) ? (
+                <Grid item>
+                  <Card sx={{ minWidth: 370 }}>
+                    <CardMedia
+                      component="img"
+                      height="240"
+                      image={item.clogo}
+                      alt="logo"
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="div">
+                        {item.nstartup}
+                      </Typography>
+                      {item.offers.map((ele) =>
+                        ele.investor_id === investor_id ? (
+                          <>
+                            <Typography variant="body2" color="text.secondary">
+                              <strong>Investment Offered</strong> : ₹
+                              {numberWithCommas(ele.investment)}
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                              <strong>Equity Asked</strong>: {ele.equity}%
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                              <strong>Calculated Valuation</strong> : ₹
+                              {numberWithCommas(
+                                (ele.investment / ele.equity) * 100
+                              )}
+                            </Typography>
+                          </>
+                        ) : null
+                      )}
+                    </CardContent>
+                    <CardActions>
+                      <Button
+                        startIcon={<Cancel />}
+                        variant="outlined"
+                        color="secondary"
+                      >
+                        Declined
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              ) : null
+            )}
+          </Grid>
+        </>
       )}
     </div>
   );
