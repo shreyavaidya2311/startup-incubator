@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { ChatEngineWrapper, ChatSocket, ChatFeed } from 'react-chat-engine'
+var username = String(localStorage.getItem("username"));
 
 const ChatWrapper = () => {
     return (
@@ -10,7 +11,7 @@ const ChatWrapper = () => {
                 chatID='110487'
                 chatAccessKey='ca-840a3ed9-70c9-4a5c-af89-cc9016200581'
                 //somehow get the actual username of the session
-                senderUsername='getusername'
+                senderUsername={username}
             />
             <ChatFeed activeChat='110487' />
         </ChatEngineWrapper>
