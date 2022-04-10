@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => res.send("Hello World!"));
 
-const routes = ["users", "startups"];
+const routes = ["users", "startups", "investors"];
 routes.forEach((route) =>
   app.use(`/api/${route}`, require(`./routes/${route}`))
 );

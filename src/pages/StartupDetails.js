@@ -16,6 +16,7 @@ import logo from "../assets/img/SmartUp-dark.png";
 import "../App.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Navbar from "../components/Navbar";
 
 function StartupDetails(props) {
   const [data, setData] = useState([]);
@@ -99,169 +100,146 @@ function StartupDetails(props) {
 
   return (
     <div>
-      <AppBar color="primary">
-        <Toolbar>
-          <Grid container justifyContent="space-between">
-            <Grid item>
-              <img src={logo} alt="logo" />
-            </Grid>
-            <Grid item>
-              <Link to="/startup-details">
-                <IconButton style={{ marginTop: "5px" }}>
-                  <Avatar
-                    src={clogo ? clogo : "https://i.ibb.co/0jGHG81/profile.png"}
+      <Navbar role="startup" />
+      <div style={{ marginTop: "4.5em" }}>
+        <center>
+          <Typography variant="overline" style={{ fontSize: "1.75em" }}>
+            <strong>Startup Details</strong>
+          </Typography>
+          <br />
+          {loading ? (
+            <CircularProgress />
+          ) : (
+            <>
+              <Grid container spacing={2} style={{ width: "50%" }}>
+                <Grid item xs={12} sm={12}>
+                  <TextField
+                    name="name"
+                    required
+                    fullWidth
+                    label="Name of Startup"
+                    value={data.nstartup}
+                    disabled
                   />
-                </IconButton>
-              </Link>
+                </Grid>
+                <Grid item xs={12} sm={12}>
+                  <TextField
+                    name="domain"
+                    required
+                    fullWidth
+                    label="Startup Domain"
+                    value={data.domain}
+                    disabled
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    required
+                    fullWidth
+                    label="Prior Investors"
+                    name="pinvestors"
+                    value={data.istartups}
+                    disabled
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    required
+                    fullWidth
+                    label="Current Valuation"
+                    name="valuation"
+                    value={data.valuation}
+                    disabled
+                  />
+                </Grid>
+                <Grid item xs={12} sm={12}>
+                  <TextField
+                    name="description"
+                    required
+                    fullWidth
+                    label="Description"
+                    value={tagline}
+                    multiline
+                    onChange={(e) => setTagline(e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={12}>
+                  <TextField
+                    name="logo"
+                    required
+                    fullWidth
+                    label="Startup Logo (Link)"
+                    value={clogo}
+                    onChange={(e) => setLogo(e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={12}>
+                  <TextField
+                    name="pitch"
+                    required
+                    fullWidth
+                    label="Pitch and Demo (Link)"
+                    value={pitch}
+                    onChange={(e) => setPitch(e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    required
+                    fullWidth
+                    label="Ask for Investment"
+                    name="money"
+                    type="number"
+                    value={investment}
+                    onChange={(e) => setInvestment(e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    required
+                    fullWidth
+                    label="Equity Offer"
+                    name="equity"
+                    type="number"
+                    value={equity}
+                    onChange={(e) => setEquity(e.target.value)}
+                  />
+                </Grid>
+              </Grid>
+              <br />
+              {mode === "private" ? (
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  startIcon={<Public />}
+                  onClick={() => changeMode("public")}
+                >
+                  Make Startup Public
+                </Button>
+              ) : (
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  startIcon={<PrivacyTip />}
+                  onClick={() => changeMode("private")}
+                >
+                  Make Startup Private
+                </Button>
+              )}
 
-              <IconButton onClick={handleLogout} style={{ marginTop: "8px" }}>
-                <Logout style={{ color: "#ffffff" }} />
-              </IconButton>
-            </Grid>
-          </Grid>
-        </Toolbar>
-      </AppBar>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <center>
-        <Typography variant="overline" style={{ fontSize: "1.75em" }}>
-          <strong>Startup Details</strong>
-        </Typography>
-        <br />
-        {loading ? (
-          <CircularProgress />
-        ) : (
-          <Grid container spacing={2} style={{ width: "50%" }}>
-            <Grid item xs={12} sm={12}>
-              <TextField
-                name="name"
-                required
-                fullWidth
-                label="Name of Startup"
-                value={data.nstartup}
-                disabled
-              />
-            </Grid>
-            <Grid item xs={12} sm={12}>
-              <TextField
-                name="domain"
-                required
-                fullWidth
-                label="Startup Domain"
-                value={data.domain}
-                disabled
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                required
-                fullWidth
-                label="Prior Investors"
-                name="pinvestors"
-                value={data.istartups}
-                disabled
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                required
-                fullWidth
-                label="Current Valuation"
-                name="valuation"
-                value={data.valuation}
-                disabled
-              />
-            </Grid>
-            <Grid item xs={12} sm={12}>
-              <TextField
-                name="description"
-                required
-                fullWidth
-                label="Description"
-                value={tagline}
-                multiline
-                onChange={(e) => setTagline(e.target.value)}
-              />
-            </Grid>
-            <Grid item xs={12} sm={12}>
-              <TextField
-                name="logo"
-                required
-                fullWidth
-                label="Startup Logo (Link)"
-                value={clogo}
-                onChange={(e) => setLogo(e.target.value)}
-              />
-            </Grid>
-            <Grid item xs={12} sm={12}>
-              <TextField
-                name="pitch"
-                required
-                fullWidth
-                label="Pitch and Demo (Link)"
-                value={pitch}
-                onChange={(e) => setPitch(e.target.value)}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                required
-                fullWidth
-                label="Ask for Investment"
-                name="money"
-                type="number"
-                value={investment}
-                onChange={(e) => setInvestment(e.target.value)}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                required
-                fullWidth
-                label="Equity Offer"
-                name="equity"
-                type="number"
-                value={equity}
-                onChange={(e) => setEquity(e.target.value)}
-              />
-            </Grid>
-          </Grid>
-        )}
-
-        <br />
-        {mode === "private" ? (
-          <Button
-            variant="outlined"
-            color="primary"
-            startIcon={<Public />}
-            onClick={() => changeMode("public")}
-          >
-            Make Startup Public
-          </Button>
-        ) : (
-          <Button
-            variant="outlined"
-            color="primary"
-            startIcon={<PrivacyTip />}
-            onClick={() => changeMode("private")}
-          >
-            Make Startup Private
-          </Button>
-        )}
-
-        <Button
-          variant="outlined"
-          color="secondary"
-          style={{ marginLeft: "1em" }}
-          startIcon={<Save />}
-          onClick={saveChanges}
-        >
-          Save Changes
-        </Button>
-      </center>
+              <Button
+                variant="outlined"
+                color="secondary"
+                style={{ marginLeft: "1em" }}
+                startIcon={<Save />}
+                onClick={saveChanges}
+              >
+                Save Changes
+              </Button>
+            </>
+          )}
+        </center>
+      </div>
     </div>
   );
 }

@@ -5,11 +5,11 @@ import theme from "./theme";
 import Login from "./pages/Login";
 import RegisterInvestor from "./pages/RegisterInvestor/Register";
 import RegisterStartup from "./pages/RegisterStartup/Register";
-import InvestorDashboard from "./pages/InvestorDashboard";
-import StartupDashboard from "./pages/StartupDashboard";
 import InvestmentPortal from "./pages/InvestmentPortal";
-import ProtectedRoute from "./ProtectedRoute";
+import StartupPortal from "./pages/StartupPortal";
 import StartupDetails from "./pages/StartupDetails";
+import InvestorDetails from "./pages/InvestorDetails";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   return (
@@ -20,18 +20,15 @@ function App() {
           <Route exact path="/register-investor" component={RegisterInvestor} />
           <Route exact path="/register-startup" component={RegisterStartup} />
           <ProtectedRoute
-            path="/investor-dashboard"
-            component={InvestorDashboard}
-          />
-          <ProtectedRoute
-            path="/startup-dashboard"
-            component={StartupDashboard}
-          />
-          <ProtectedRoute
             path="/investment-portal"
             component={InvestmentPortal}
           />
+          <ProtectedRoute path="/startup-portal" component={StartupPortal} />
           <ProtectedRoute path="/startup-details" component={StartupDetails} />
+          <ProtectedRoute
+            path="/investor-details"
+            component={InvestorDetails}
+          />
         </Switch>
       </Router>
     </ThemeProvider>

@@ -24,12 +24,16 @@ const Login = (props) => {
       localStorage.setItem("smartup-auth-token", res.data.token);
       localStorage.setItem("user-id", res.data._id);
       localStorage.setItem("username", res.data.username);
+      if (res.data.img) {
+        localStorage.setItem("profile-pic", res.data.img);
+      }
       if (res.data.role === "investor") {
+        localStorage.setItem("investor-id", res.data.investor_id);
         localStorage.setItem("domains", res.data.domains);
-        props.history.push("/investor-dashboard");
+        props.history.push("/investment-portal");
       } else {
         localStorage.setItem("startup-id", res.data.startup_id);
-        props.history.push("/startup-dashboard");
+        props.history.push("/startup-portal");
       }
     });
   };

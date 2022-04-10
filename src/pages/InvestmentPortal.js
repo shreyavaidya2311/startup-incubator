@@ -27,6 +27,7 @@ import logo from "../assets/img/SmartUp-dark.png";
 import "../App.css";
 import axios from "axios";
 import { styled } from "@mui/material/styles";
+import Navbar from "../components/Navbar";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -47,53 +48,31 @@ function InvestmentPortal(props) {
     let domains = localStorage.getItem("domains");
     const domains_array = domains.split(",");
     let body = { domains: domains_array };
-    console.log(body.domains);
     axios
       .post("http://localhost:5000/api/startups/get-preferred-startups", body)
       .then((res) => {
         setData(res.data.startup);
-        console.log(res.data);
         setLoading(false);
       });
   }, []);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  const handleLogout = () => {
-    localStorage.clear();
-    props.history.push("/");
-  };
   const numberWithCommas = (x) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
   return (
     <div>
-      <AppBar color="primary">
-        <Toolbar>
-          <Grid container justifyContent="space-between">
-            <Grid item>
-              <img src={logo} alt="logo" />
-            </Grid>
-            <Grid item>
-              <IconButton style={{ marginTop: "5px" }}>
-                <Avatar src="https://i.ibb.co/0jGHG81/profile.png" />
-              </IconButton>
-              <IconButton onClick={handleLogout} style={{ marginTop: "8px" }}>
-                <Logout style={{ color: "#ffffff" }} />
-              </IconButton>
-            </Grid>
-          </Grid>
-        </Toolbar>
-      </AppBar>
+      <Navbar role="investor" />
       {loading ? (
         <CircularProgress />
       ) : (
         <Grid
           container
-          spacing={10}
-          alignItems="center"
+          // spacing={10}
+          // alignItems="center"
           justifyContent="center"
-          style={{ minHeight: "100vh" }}
+          style={{ marginTop: "6em" }}
         >
           {data.map((item) => (
             <Grid item>

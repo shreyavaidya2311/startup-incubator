@@ -30,7 +30,12 @@ router.post("/edit-startup", (req, res) => {
         tagline: tagline,
       }
     ).then((startup) => {
-      res.status(200).send({ startup: startup });
+      User.findOneAndUpdate(
+        { startup_id: startup_id },
+        {
+          img: clogo,
+        }
+      ).then(() => res.status(200).send({ startup: startup }));
     });
   } catch (err) {
     res.status(400).send("Error:" + err);
