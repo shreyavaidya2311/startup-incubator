@@ -1,70 +1,77 @@
-# Getting Started with Create React App
+<div align="center"><img width="300px" src="https://user-images.githubusercontent.com/56782318/162634551-8e6a1e44-da1e-4800-960d-73ca34c38869.png" alt="img"/></div>
+<div align="center"> Startups are redefining the Indian economy. With its favorable demography, open economic
+environment and culture of entrepreneurialism, India is a great place to start a business. <b>SmartUp</b> aims to promote startups and provide a platform to bridge the gap between investors and startup owners.
+ </div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Features
 
-## Available Scripts
+**Login View**
+  1.	Register user as investor / startup owner
+  2.	Login as investor / startup owner
 
-In the project directory, you can run:
+**Investor View**
+  1.	Edit profile details
+  2.	Make profile public / private
+  3.	View recommended startups (based on given preferences)
+  4.	Watch pitch video to learn more about the startups
+  5.	Make an offer to startup of choice
+  6.	Track offers made
+  
+**Startup Owner View**
+  1.	Edit startup details
+  2.	Make startup public / private
+  3.	Add investment ask details
+  4.	View offers by investors
+  5.	Accept / Reject offers received
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<img width="650px" src="https://user-images.githubusercontent.com/56782318/162634909-77227648-7331-4dc6-86ca-977b7a19903c.png" alt="img"/>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## UML Sequence Diagram
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<img width="550px" src="https://user-images.githubusercontent.com/56782318/162634968-a03cda6c-7e04-48e4-86d4-090ed61cda17.png" alt="img"/>
 
-### `npm run build`
+## UML Class Diagram
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<img width="550px" src="https://user-images.githubusercontent.com/56782318/162635000-1fbe0a1d-a781-44b9-9744-00c18f35cc79.png" alt="img"/>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Workflow Graph
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<img width="850px" src="https://user-images.githubusercontent.com/56782318/162635041-40ca0743-9511-467e-ace2-501b5b822fcf.png" alt="img"/>
 
-### `npm run eject`
+## Screenshots
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<img width="700px" src="https://user-images.githubusercontent.com/56782318/162635147-1d3ece05-b4ce-4996-85b4-e94e979b6b28.png" alt="img"/>
+<img width="700px" src="https://user-images.githubusercontent.com/56782318/162635172-b99b4f8c-2a86-4915-b95b-bee1e148c7eb.png" alt="img"/>
+<img width="700px" src="https://user-images.githubusercontent.com/56782318/162635180-9f813890-c063-4ff5-a54f-454793af1c32.png" alt="img"/>
+<img width="700px" src="https://user-images.githubusercontent.com/56782318/162635194-9f7b97a9-2d91-41e3-b2a5-3830d37192d0.png" alt="img"/>
+<img width="700px" src="https://user-images.githubusercontent.com/56782318/162635200-9a68a7ae-7d72-4718-ba53-822cbd9b4423.png" alt="img"/>
+<img width="700px" src="https://user-images.githubusercontent.com/56782318/162635217-928722d2-66cd-4219-82d7-d89efd99b3c8.png" alt="img"/>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Installation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Clone the repository
+```
+git clone https://github.com/shreyavaidya2311/startup-incubator.git
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. Installing dependencies
+```
+npm i
+cd backend & npm i
+```
 
-## Learn More
+3. Run the frontend (http://localhost:3000/)
+```
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. Run the backend
+```
+cd backend
+npm run server
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
