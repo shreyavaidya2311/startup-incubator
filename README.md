@@ -26,7 +26,7 @@ environment and culture of entrepreneurialism, India is a great place to start a
 
 ## Tech Stack
 
-<img width="650px" src="https://user-images.githubusercontent.com/56782318/162634909-77227648-7331-4dc6-86ca-977b7a19903c.png" alt="img"/>
+<img width="650px" src="https://user-images.githubusercontent.com/56782318/167787866-226de161-3a7c-4d4a-9a1e-53cba6ecb47f.png" alt="img"/>
 
 
 ## UML Sequence Diagram
